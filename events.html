@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>UJ Events — Luxury Weddings & Events</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg: #fffaf8;
+        --text: #281c1a;
+        --muted: #766a66;
+        --gold: #b78b54;
+        --champagne: #f5e9e3;
+        --glass: rgba(255, 255, 255, 0.55);
+        --shadow: 0 12px 40px rgba(40, 28, 26, 0.08);
+        --radius: 20px;
+        --maxw: 1200px;
+        --accent-glow: rgba(183, 139, 84, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #fffaf8 0%, #f8f0ed 60%);
+        color: var(--text);
+        font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+        overflow-x: hidden; /* Fix horizontal scroll on mobile */
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: 20px;
+      }
+
+      /* ---------- Header ---------- */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        backdrop-filter: blur(6px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85));
+        border-bottom: 1px solid rgba(40, 28, 26, 0.04);
+      }
+
+      .nav {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .brand-small {
+        display: block;
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 500;
+        margin-top: -2px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .menu {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .menu a {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      .menu a:hover {
+        color: var(--text);
+        background: rgba(183, 139, 84, 0.06);
+      }
+
+      .cta {
+        background: linear-gradient(90deg, #fff, #fffaf0);
+        border: 1px solid rgba(183, 139, 84, 0.18);
+        color: var(--text);
+        padding: 10px 16px;
+        font-weight: 600;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(183, 139, 84, 0.08);
+        font-size: 14px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+      }
+      
+      .cta:hover {
+        transform: translateY(-2px);
+        transition: 0.18s ease;
+      }
+
+      .hamburger {
+        display: none;
+        background: none;
+        border: 0;
+        font-size: 28px;
+        color: var(--text);
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      /* ---------- Hero ---------- */
+      .hero {
+        position: relative;
+        min-height: calc(100vh - 76px);
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url('Event12.jpg');
+        background-size: cover;
+        background-position: center;
+        filter: saturate(1) contrast(0.95) brightness(0.95);
+        transform-origin: center;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(800px 300px at 70% 20%, rgba(255, 236, 228, 0.7), rgba(255, 250, 248, 0.45) 30%, rgba(255, 250, 248, 0.0) 60%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 245, 240, 0.6));
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 4;
+        width: 100%;
+        padding-bottom: 40px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .hero-headline {
+        padding: 40px 0;
+        max-width: 720px;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 4.2rem);
+        margin: 0 0 12px;
+        color: var(--text);
+        line-height: 1.1;
+      }
+
+      .hero p.lead {
+        color: var(--muted);
+        font-size: 17px;
+        margin: 8px 0 22px;
+        line-height: 1.7;
+      }
+
+      .hero-ctas {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .hero-card {
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.6));
+        border: 1px solid rgba(183, 139, 84, 0.12);
+        box-shadow: var(--shadow);
+        padding: 18px;
+        backdrop-filter: blur(4px);
+      }
+
+      .hero-card .title {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .hero-card .value {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        margin-top: 6px;
+        color: var(--text);
+      }
+
+      /* Animations */
+      .gold-orb {
+        position: absolute;
+        right: -120px;
+        top: 40%;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(183, 139, 84, 0.13), rgba(183, 139, 84, 0.06) 40%, rgba(255, 255, 255, 0) 60%);
+        filter: blur(18px);
+        z-index: 3;
+      }
+
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.85;
+        animation: floaty 10s infinite linear;
+        mix-blend-mode: screen;
+      }
+
+      @keyframes floaty {
+        0% { transform: translateY(0) translateX(0); }
+        50% { transform: translateY(-28px) translateX(12px); }
+        100% { transform: translateY(0) translateX(0); }
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .section h1 {
+        text-align: center;
+        font-size: clamp(28px, 4vw, 42px);
+        font-family: "Playfair Display";
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .welcome-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: start;
+        padding-top: 60px;
+      }
+
+      .welcome-card {
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 250, 248, 0.9));
+        border: 1px solid rgba(40, 28, 26, 0.04);
+        padding: 26px;
+        box-shadow: var(--shadow);
+      }
+
+      .sub-text {
+        text-align: center;
+        font-size: 17px;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* Galleries */
+      /* HORIZONTAL SCROLL GALLERY */
+          .gallery {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 6px;
+            scrollbar-width: none; /* Firefox */
+          }
+
+          .gallery::-webkit-scrollbar {
+             display: none; /* Chrome */
+         }
+
+
+      .gallery img {
+        flex: 0 0 auto;
+        width: 280px;
+        height: 360px;
+        object-fit: cover;
+        border-radius: 14px;
+        scroll-snap-align: start;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        transition: 0.3s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.3);
+      }
+
+      /* Service Cards */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 250, 248, 0.9));
+        border: 1px solid rgba(40, 28, 26, 0.04);
+        box-shadow: var(--shadow);
+        height: 280px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .card:hover img {
+        transform: scale(1.06);
+      }
+
+      .card .label {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: 1px solid rgba(40, 28, 26, 0.04);
+        z-index: 2;
+      }
+
+      /* Instagram grid */
+      .grid-6 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+      }
+      .grid-6 img {
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      /* Contact Section */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      /* Testimonials */
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 22px;
+        align-items: center;
+        padding: 60px 0;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 48px 0;
+        background: linear-gradient(180deg, rgba(255, 250, 248, 0.6), rgba(255, 245, 240, 0.9));
+        border-top: 1px solid rgba(40, 28, 26, 0.04);
+        color: var(--muted);
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 18px;
+      }
+      .foot-col h4 {
+        font-family: "Playfair Display", serif;
+        margin: 0 0 8px;
+        color: var(--text);
+      }
+      .foot-col a {
+          display: block;
+          margin-bottom: 6px;
+      }
+      .copyright {
+        margin-top: 30px;
+        font-size: 13px;
+        color: var(--muted);
+        text-align: center;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        padding-top: 20px;
+      }
+
+      .mt-24 { margin-top: 24px; }
+      .text-center { text-align: center; }
+
+      /* =========================================
+         RESPONSIVE & MOBILE FIXES (Improved)
+      ========================================= */
+
+      @media (max-width: 1100px) {
+        .hero-grid { grid-template-columns: 1fr 360px; }
+        .card-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      /* Tablet & Mobile Breakpoint */
+      @media (max-width: 780px) {
+        /* General Layout */
+        .container { padding-inline: 16px; }
+        .section { padding: 50px 16px; }
+        
+        /* Navigation */
+        .menu { display: none; } /* Hide Desktop Menu */
+        .hamburger { display: block; } /* Show Hamburger */
+        
+        /* Hero */
+        .hero-grid { 
+            grid-template-columns: 1fr; 
+            gap: 24px; 
+            text-align: center;
+        }
+        .hero-headline { padding: 20px 0; margin: auto; }
+        .hero-ctas { justify-content: center; }
+        .hero-grid > div:nth-child(2) {
+            margin: 0 auto; /* Center the right column box on mobile */
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        /* Fix the stats cards alignment on mobile */
+        .hero-grid > div:nth-child(2) > div:last-child {
+            justify-content: center;
+        }
+
+        /* Grids - Make them stack on mobile */
+        .welcome-grid, 
+        .contact-grid, 
+        .foot-grid, 
+        .testimonial-grid {
+          grid-template-columns: 1fr !important;
+          gap: 30px;
+        }
+
+        /* Gallery Fixes */
+        .gallery {
+          grid-template-columns: 1fr; /* 1 Column for big impact */
+          gap: 16px;
+        }
+        .gallery img {
+          height: 560px; /* Smaller height for mobile */
+        }
+
+        /* Service Cards */
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+        .card { height: 520px; }
+
+        /* Instagram Grid */
+        .grid-6 { grid-template-columns: repeat(3, 1fr); }
+        
+        /* Mobile Menu */
+        #mobileMenu {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        #mobileMenu nav a {
+            padding: 10px;
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+            font-size: 16px;
+        }
+      }
+
+      /* Small Mobile Breakpoint */
+      @media (max-width: 420px) {
+        .grid-6 { grid-template-columns: repeat(2, 1fr); }
+        .hero h1 { font-size: 2.2rem; }
+        .hero-card { width: 100% !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="brand">
+          UJ Events <span class="brand-small"><br/>Luxury Wedding & Events</span>
+        </div>
+
+        <nav class="menu" aria-label="Primary">
+          <a href="#welcome">Home</a>
+          <a href="#experience">Services</a>
+          <a href="#festival">Gallery</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display: flex; gap: 12px; align-items: center">
+          <a class="cta" href="#contact" style="display:none; @media(min-width:780px){display:inline-block;}">Get a Quote</a> <button class="hamburger" aria-label="menu" onclick="toggleMenu()">☰</button>
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="container" style="display: none; padding-bottom: 14px">
+        <nav style="display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(0, 0, 0, 0.04); padding-top: 12px">
+          <a href="#welcome" onclick="toggleMenu()">Home</a>
+          <a href="#experience" onclick="toggleMenu()">Services</a>
+          <a href="#festival" onclick="toggleMenu()">Gallery</a>
+          <a href="#contact" onclick="toggleMenu()">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero" aria-label="Hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="gold-orb" aria-hidden="true"></div>
+
+      <div class="particle" style="left: 6%; top: 18%; width: 12px; height: 12px; background: var(--gold); animation-duration: 9s"></div>
+      <div class="particle" style="left: 14%; top: 32%; width: 8px; height: 8px; background: #f7e9e1; animation-duration: 11s"></div>
+      <div class="particle" style="left: 82%; top: 22%; width: 18px; height: 18px; background: rgba(183, 139, 84, 0.12); animation-duration: 13s"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="hero-headline" data-aos="fade-right" data-aos-duration="900">
+            <h1>UJ Events</h1>
+            <p class="lead">Creating timeless memories with luxury styling and flawless planning.</p>
+            
+            <div class="hero-ctas">
+                <a class="cta" href="#contact">Book a Consultation</a>
+                <a class="cta" href="#experience" style="background: transparent; border: 1px solid rgba(40, 28, 26, 0.2)">See Our Work</a>
+            </div>
+          </div>
+
+          <div>
+            <div style="border-radius: 12px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 250, 248, 0.95)); padding: 20px; border: 1px solid rgba(40, 28, 26, 0.04); text-align: left;">
+              <div style="font-size: 13px; color: var(--muted)">Personal planner assigned</div>
+              <div style="font-weight: 600; font-family: 'Playfair Display', serif; margin-top: 6px; font-size: 18px;">Full service wedding planning & styling</div>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap;">
+              <div class="hero-card" style="flex: 1; min-width: 140px;" data-aos="fade-up" data-aos-delay="200">
+                <div class="title">Events Styled</div>
+                <div class="value">120+</div>
+              </div>
+              <div class="hero-card" style="flex: 1; min-width: 140px;" data-aos="fade-up" data-aos-delay="300">
+                <div class="title">Years Combined</div>
+                <div class="value">15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="text-align: center; padding: 14px 0; border-top: 1px solid rgba(0, 0, 0, 0.02); border-bottom: 1px solid rgba(0, 0, 0, 0.02); background: var(--champagne)">
+      <div class="container">
+        <small style="letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; font-size: 11px;">Event design & styling boutique • serving the metro area</small>
+      </div>
+    </div>
+
+    <section id="welcome" class="container">
+      <div class="welcome-grid">
+        <div data-aos="fade-up" style="display:none; @media(min-width:780px){display:block;}"> 
+           </div>
+
+        <div data-aos="fade-left" style="grid-column: 1 / -1;">
+          <div class="welcome-card" style="text-align:center;">
+            <h2 style="margin-top: 0; font-family: 'Playfair Display', serif">Welcome to UJ Events</h2>
+            <p class="lead">
+              We design thoughtful, joy-filled moments — soft palettes, curated details, and seamless planning. From intimate birthdays to elevated brand events, we make celebrations feel effortless and beautiful.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="festival" class="section">
+      <h1>Festival & Special Occasion Decor</h1>
+      <p class="sub-text">Traditional to trendy — har festival ke liye special themed decoration available.</p>
+      <div class="gallery">
+        <img src="Fest01.jpeg" alt="Festival Decor 1" loading="lazy">
+        <img src="Fest02.jpeg" alt="Festival Decor 2" loading="lazy">
+        <img src="Fest03.jpeg" alt="Festival Decor 3" loading="lazy">
+        <img src="Fest04.jpeg" alt="Festival Decor 4" loading="lazy">
+        <img src="Fest05.jpeg" alt="Festival Decor 5" loading="lazy">
+      </div>
+    </section>
+
+    <section id="kids" class="section" style="background: #f2f7ff">
+      <h1>Kids & Cartoon Theme Celebrations</h1>
+      <p class="sub-text">Cartoon characters, balloon décor, birthday themes — sab ready!</p>
+      <div class="gallery">
+        <img src="Birth01.jpeg" alt="Birthday 1" loading="lazy">
+        <img src="Birth02.jpeg" alt="Birthday 2" loading="lazy">
+        <img src="Birth03.jpeg" alt="Birthday 3" loading="lazy">
+        <img src="Birth04.jpeg" alt="Birthday 4" loading="lazy">
+        <img src="Birth05.jpeg" alt="Birthday 5" loading="lazy">
+        <img src="Birth06.jpeg" alt="Birthday 6" loading="lazy">
+      </div>
+    </section>
+
+    <section id="premium" class="section">
+      <h1>Premium Event Decoration Services</h1>
+      <p class="sub-text">High-quality elegant décor — engagement, reception & premium celebrations.</p>
+      <div class="gallery">
+        <img src="Pre01.jpeg" alt="Premium 1" loading="lazy">
+        <img src="Pre02.jpeg" alt="Premium 2" loading="lazy">
+        <img src="pre03.jpeg" alt="Premium 3" loading="lazy">
+        <img src="Pre04.jpeg" alt="Premium 4" loading="lazy">
+        <img src="Pre05.jpeg" alt="Premium 5" loading="lazy">
+        <img src="Pre06.jpeg" alt="Premium 6" loading="lazy">
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container section">
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px; justify-content: center;">
+          <small style="letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted)">Choose your</small>
+          <h2 style="margin: 0; font-family: 'Playfair Display', serif">Experience</h2>
+        </div>
+
+        <div class="card-grid mt-24">
+          <a class="card" href="#" data-aos="fade-up" data-aos-delay="80">
+            <figure>
+              <img src="celeb10.jpeg" alt="Children birthday celebration with balloons" loading="lazy" />
+              <span class="label">Celebrations</span>
+            </figure>
+          </a>
+
+          <a class="card" href="#" data-aos="fade-up" data-aos-delay="160">
+            <figure>
+              <img src="baloon21.jpeg" alt="Balloon styling and backdrops" loading="lazy" />
+              <span class="label">Balloons</span>
+            </figure>
+          </a>
+
+          <a class="card" href="#" data-aos="fade-up" data-aos-delay="240">
+            <figure>
+              <img src="Last101.jpeg" alt="Corporate lounge event" loading="lazy" />
+              <span class="label">Business Events</span>
+            </figure>
+          </a>
+
+          <a class="card" href="#" data-aos="fade-up" data-aos-delay="240">
+            <figure>
+              <img src="Enta1.jpeg" alt="Corporate lounge event" loading="lazy" />
+              <span class="label">Entry</span>
+            </figure>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="container">
+      <div class="testimonial-grid">
+        
+
+        
+      </div>
+
+      <div class="quote-box" data-aos="fade-right">
+          <h3 style="margin: 0 0 8px; font-family: 'Playfair Display', serif">Kind Words</h3>
+          <p style="color: var(--muted); line-height: 1.7; margin: 0 0 12px">
+            “Thanks so much, UJ Events! It was better than I imagined. Can’t wait to use your team for future events.”
+          </p>
+          <p style="font-weight: 600; margin: 0">— Ujawal Jain</p>
+        </div>
+
+    </section>
+
+    <section id="instagram" class="instagram container section">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+        <h2 style="margin: 0; font-family: 'Playfair Display', serif; font-size: 24px;">Follow us on Instagram</h2>
+        <a class="cta" href="#">@uj_events</a>
+      </div>
+
+      <div class="grid-6" data-aos="fade-up">
+        <img src="Last1.webp" alt="Insta 1" loading="lazy"/>
+        <img src="Last2.webp" alt="Insta 2" loading="lazy"/>
+        <img src="Last3.webp" alt="Insta 3" loading="lazy"/>
+        <img src="Last4.webp" alt="Insta 4" loading="lazy"/>
+        <img src="last5.webp" alt="Insta 5" loading="lazy"/>
+        <img src="Last6.webp" alt="Insta 6" loading="lazy"/>
+      </div>
+    </section>
+
+    <section id="contact" class="container section">
+      <div class="contact-grid">
+        <div data-aos="fade-up">
+          <h2 style="font-family: 'Playfair Display', serif">Let's plan something beautiful</h2>
+          <p style="color: var(--muted)">Fill the form or call us to discuss ideas, availability, and budget. We’ll get back within 24 hours.</p>
+
+          <form style="margin-top: 12px; display: grid; gap: 10px">
+            <input placeholder="Your name" style="padding: 12px; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.1); width: 100%;" />
+            <input placeholder="Email or phone" style="padding: 12px; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.1); width: 100%;" />
+            <textarea placeholder="Tell us about your event (date, guests, style)" rows="4" style="padding: 12px; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.1); width: 100%;"></textarea>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+              <button class="cta" type="button">Send message</button>
+              <a href="tel:+919421272867" class="cta" style="background: transparent; border: 1px solid rgba(40, 28, 26, 0.2)">Call us</a>
+            </div>
+          </form>
+        </div>
+
+        <div data-aos="fade-left" style="position: relative">
+          <div style="border-radius: 18px; padding: 24px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 250, 248, 0.95)); border: 1px solid rgba(40, 28, 26, 0.04); box-shadow: var(--shadow)">
+            <h4 style="margin: 0 0 6px; font-family: 'Playfair Display', serif; font-size: 20px;">Contact</h4>
+            <div style="color: var(--text); margin-bottom: 15px;">+91 94212 72867<br />hello@elevatedecor.in</div>
+            
+            <div style="font-weight: 600; margin-bottom: 4px;">Visit our studio</div>
+            <div style="color: var(--muted); margin-bottom: 20px;">Chh.SambhajiNagar</div>
+            
+            <a class="cta" href="#" style="display: inline-block">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="foot-grid">
+          <div class="foot-col">
+            <h4>UJ Events</h4>
+            <p style="margin: 6px 0 0; color: var(--muted)">Event design & styling boutique crafting soft, modern celebrations.</p>
+          </div>
+
+          <div class="foot-col">
+            <h4>Contact</h4>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <a href="tel:+919421272867" class="cta">Call Us</a>
+              <a href="https://wa.me/919421272867" class="cta" style="background: transparent; border: 1px solid rgba(40, 28, 26, 0.2)">WhatsApp</a>
+            </div>
+            <br>
+            <a href="mailto:hello@elevatedecor.in">hello@elevatedecor.in</a>
+          </div>
+        </div>
+
+        <div class="copyright">
+          © <script>document.write(new Date().getFullYear());</script> UJ Events • All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+      // mobile menu toggler
+      function toggleMenu() {
+        const m = document.getElementById("mobileMenu");
+        m.style.display = m.style.display === "flex" ? "none" : "flex";
+      }
+
+      // Initialize AOS (scroll animations)
+      AOS.init({
+        once: true,
+        duration: 700,
+        easing: "ease-out-quart",
+      });
+
+      // GSAP hero animation
+      window.addEventListener("load", () => {
+        const tl = gsap.timeline();
+        tl.from(".brand", { y: -8, opacity: 0, duration: 0.6, ease: "power2.out" })
+          .from(".menu a", { y: -6, opacity: 0, duration: 0.5, stagger: 0.06 }, "-=0.45")
+          .from(".hero h1", { y: 20, opacity: 0, duration: 0.9, ease: "power3.out" }, "-=0.3")
+          .from(".hero p.lead", { y: 12, opacity: 0, duration: 0.7 }, "-=0.55")
+          .from(".hero-ctas .cta", { scale: 0.98, opacity: 0, duration: 0.5, stagger: 0.12 }, "-=0.45");
+
+        // subtle parallax effect on hero bg
+        document.addEventListener("mousemove", (e) => {
+          // Check if window width is greater than mobile to avoid lag on phones
+          if(window.innerWidth > 780) {
+              const x = (e.clientX / window.innerWidth - 0.5) * 8; // range -4..4
+              const y = (e.clientY / window.innerHeight - 0.5) * 6;
+              gsap.to("#heroBg", { duration: 1.6, x: x * -6, y: y * -4, scale: 1.02, ease: "power3.out" });
+              gsap.to(".gold-orb", { duration: 2.2, x: x * -10, y: y * -6, ease: "power2.out" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
